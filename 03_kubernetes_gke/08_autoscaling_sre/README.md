@@ -8,3 +8,4 @@ Now that you understand the basic principals of deploying an app to Kubernetes, 
 3. [Liveness / Readiness Probes](03_readiness_liveness.md)
 4. [Horizontal Pod Autoscaling](04_horizontal_pod_autoscaler.md)
 5. [Cluster Scaling](05_cluster_autoscaler.md)
+6. [Logging Best Practices](06_logging_best_practices.md)

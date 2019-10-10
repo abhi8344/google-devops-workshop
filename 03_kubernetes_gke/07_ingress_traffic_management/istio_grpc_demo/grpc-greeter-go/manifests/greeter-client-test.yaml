@@ -20,14 +20,10 @@ spec:
   template:
     spec:
       restartPolicy: OnFailure
-      hostAliases:
-      - ip: "10.138.0.36"
-        hostnames:
-        - "grpc.example.com"
       containers:
       - name: greeter
         image: redaptcloud/grpc-greeter-go-client
-        args: ["--address", "grpc.example.com:443"]
+        args: ["--address", "istio-ilbgateway:443"]
         imagePullPolicy: Always
         volumeMounts:
         - name: tls
