@@ -4,9 +4,9 @@
 
 Stackdriver has capability of parsing json logs, allowing you to search on properties contained within, lets take a look at two different implementations of nginx.
 
-`kubectl apply -f nginx.yaml` 
+`kubectl apply -f demo/nginx.yaml` 
 
-`kubectl apply -f nginxjson.yaml`
+`kubectl apply -f demo/nginxjson.yaml`
 
 Now that we have our services deployed, we will use a temporary container to send requests in.
 
