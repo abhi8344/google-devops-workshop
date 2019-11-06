@@ -108,61 +108,6 @@ spin up a similar cluster using he command line.  This apprach is prefrered and 
 
    ![image-13](gke_images/image-13.png)
    
-   
-## Upgrade Cluster
-
-TBD: Jonathan
-
-
-## Install Latest Version of Docker (Required for Automated Builds in Section 4)
-
-
-1. Navigate to the node details section of the Cluster console
-
-    ![image-20](gke_images/image-20.png)
-    
-    From here you can see the name of your node(s).
-
-2. **On each node** in the cluster we are going to update docker to the latest version to help with further workshop topics.
-   GKE uses Ubuntu 16.04 for node boxes so we will follow the instructions from the docker site here.
-   
-   **FOR EACH** node in cluster
-   	
-   In the upper right corner of console click on the following icon    
-    
-   ![image-2](gke_images/image-2.png)
-       
-    This will open up the gcloud terminal window.  SSH into your node via the gcloud compute ssh command. **Note**: your
-    node id(s) will be different.
-    
-   ` gcloud compute ssh gke-gke-workshop-from-co-default-pool-7c48a7ca-5p98 --zone us-west1-a`
-    
-    Once connected run the following commands ...
-    
-    `sudo apt-get update`
-    
-    `sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common`
-   
-   ` curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-   
-   ` sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
-   
-    `sudo apt-get update`
-    
-    `sudo apt-get install -y docker-ce`
-    
-    The above command will install the latest stable version of docker CE.  Please refer to the below image as you will
-    asked to swap default docker ... choose "Y".
-    
-    ![image-21](gke_images/image-21.png)
-    
-   Verify the new docker version by entering the following command ...
-   
-   `docker -v `
-   
-   Your docker version should be > 17.05 CE to be able to support multi-stage build presented in next section.
-   
-   e.g. `Docker version 18.06.1-ce, build e68fc7a`
     
 
 ## Continuing
