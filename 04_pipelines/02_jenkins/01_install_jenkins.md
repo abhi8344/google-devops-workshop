@@ -1,13 +1,11 @@
 # Install Jenkins
 
-Assuming helm is installed locally and on to your cluster, we can use that to deploy the stable jenkins chart. We will also setup ingress, and connect our jenkins deployment to the internet via ingress rules, in our chart.
+Assuming helm is installed locally and on to your cluster, we can use that to deploy the stable jenkins chart. We will also setup ingress, and connect our jenkins deployment to the internet via lb, in our chart.
 
 `cd examples`
 
-Lets take a moment to review `jenkins-values.minikube.yml` and/or `jenkins-values.gke.yml`
+Lets take a moment to review `jenkins-values.gke.yml`
 
-**Minikube** Exposed as NodePort
-`helm upgrade --install jenkins stable/jenkins -f jenkins-values.minikube.yml`
 
 **GKE** Exposed as LoadBalancer
 `helm upgrade --install jenkins stable/jenkins -f jenkins-values.gke.yml`
