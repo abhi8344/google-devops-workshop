@@ -109,6 +109,22 @@ spin up a similar cluster using he command line.  This apprach is prefrered and 
    ![image-13](gke_images/image-13.png)
    
     
+## Enable NAT for Private Clusters
+
+```
+gcloud compute routers create nat-router \
+    --network default \
+    --region us-central1
+
+gcloud compute routers nats create nat-config \
+    --router-region us-central1 \
+    --router nat-router \
+    --nat-all-subnet-ip-ranges \
+    --auto-allocate-nat-external-ips
+```
+
+It may take up to 3 minutes for the NAT configuration to propagate, so wait at least a minute before trying to access the Internet again.
+
 
 ## Continuing
 

@@ -13,7 +13,25 @@ Homebrew users can use `brew install kubernetes-helm`.
 Chocolatey users can use `choco install kubernetes-helm`.
 GoFish users can use `gofish install helm`.
 
-## Install Helm to Kubernetes
+**Helm 3 does not work the exact same way, there is no more init step, and you can skip to the next section.**
+
+* Miscellaneous helm commands:
+
+
+The following command will add the stable chart repository, to your local system. You can see what charts are made available by checking here: https://github.com/helm/charts
+```
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com
+```
+
+
+```
+$ helm repo update
+```
+
+Additional commands can be gleamed from their source!
+https://docs.helm.sh/helm/#helm
+
+## Install Helm v2 (deprecated) to Kubernetes
 
 If you have RBAC enabled, and you should, you should create the following local file and then apply it.
 
@@ -45,12 +63,3 @@ $ kubectl apply -f helm-tiller-sa.yml
 $ helm init --service-account tiller
 ```
 
-* Miscellaneous helm commands:
-
-```
-$ helm search
-$ helm repo update
-```
-
-Additional commands can be gleamed from their source!
-https://docs.helm.sh/helm/#helm

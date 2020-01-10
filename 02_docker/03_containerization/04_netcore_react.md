@@ -1,6 +1,8 @@
 # .NET Core - ReactJS
 
-For the following demo, we will be working from the following directory:
+For the following demo, we will be working from the following directory, which is a sub repo of this project:
+
+`git submodule update --init --recursive`
 
 cd `examples/netcore-react/spa-react-netcore-redis/voting/voting`
 
