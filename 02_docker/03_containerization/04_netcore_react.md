@@ -118,8 +118,8 @@ If you see issues, you can run `docker volume list` to see the volumes that are 
 ## Push the Public Redis Image to GCR
 
 `docker pull redis:3.2-alpine`
-`docker tag redis:3.2-alpine redaptregistry.azurecr.io/redis:3.2-alpine`
+`docker tag redis:3.2-alpine gcr.io/redapt-anthos-poc/redis:3.2-alpine`
 
 `gcloud auth configure-docker`
 
-`docker push gcr.io/redapt-anthos-poc/favorite-beer:3.2-alpine`
+`docker push gcr.io/redapt-anthos-poc/redis:3.2-alpine`
