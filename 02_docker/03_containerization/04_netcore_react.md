@@ -99,7 +99,7 @@ volumes:
 
 You may be able to hit [localhost:8000](http://localhost:8000), if you cannot try `docker ps` and then `docker inspect <name>` to get the `IPAddress`. If your containers are running in a VM, you may need to use that VM's ip, and port `8000`.
 
-## Cleanup
+## Cleanup Docker Compose
 In this example, we are using a local docker volume, to persist our data, so if you want to completely remove the data, you can run the following commands.
 
 ```
@@ -109,3 +109,17 @@ docker volume rm voting_redis_data
 
 If you see issues, you can run `docker volume list` to see the volumes that are present.
 
+## Build/Push Favorite Beer Image to GCR using Cloud Build
+
+`gcloud config set project redapt-anthos-poc`
+
+`gcloud builds submit --config jenkins-cloudbuild.yaml --substitutions=TAG_NAME=gcr.io/redapt-anthos-poc/favorite-beer:v1 .`
+
+## Push the Public Redis Image to GCR
+
+`docker pull redis:3.2-alpine`
+`docker tag redis:3.2-alpine redaptregistry.azurecr.io/redis:3.2-alpine`
+
+`gcloud auth configure-docker`
+
+`docker push gcr.io/redapt-anthos-poc/favorite-beer:3.2-alpine`
