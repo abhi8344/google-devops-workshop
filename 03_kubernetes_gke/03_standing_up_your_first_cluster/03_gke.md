@@ -1,5 +1,71 @@
 # GKE
 
+
+https://cloud.google.com/nat/docs/gke-example
+
+
+```
+gcloud compute networks create custom-network1 \
+    --subnet-mode custom
+```
+
+```
+gcloud compute networks subnets create subnet-us-central-192 \
+   --network custom-network1 \
+   --region us-central1 \
+   --range 192.168.1.0/24
+```
+
+We will step through the following in the console, but the cli command is below for quick reference/catch up purposes. 
+```
+gcloud container clusters create "standard-cluster-1" \
+    --zone "us-central1-c" \
+    --username "admin" \
+    --cluster-version "latest" \
+    --machine-type "n1-standard-1" \
+    --image-type "COS" \
+    --disk-type "pd-standard" \
+    --disk-size "40" \
+    --scopes "https://www.googleapis.com/auth/compute","https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
+    --num-nodes "3" \
+    --enable-cloud-logging \
+    --enable-cloud-monitoring \
+    --enable-private-nodes \
+    --enable-private-endpoint \
+    --master-ipv4-cidr "172.16.0.0/28" \
+    --enable-ip-alias \
+    --network "projects/PROJECT_ID/global/networks/custom-network1" \
+    --subnetwork "projects/PROJECT_ID/regions/us-central1/subnetworks/subnet-us-central-192" \
+    --max-nodes-per-pool "30" \
+    --enable-master-authorized-networks \
+    --addons HorizontalPodAutoscaling,HttpLoadBalancing,KubernetesDashboard \
+    --enable-autoupgrade \
+    --enable-autorepair
+```
+
+```
+gcloud compute routers create nat-router \
+    --network default \
+    --region us-central1
+
+gcloud compute routers nats create nat-config \
+    --router-region us-central1 \
+    --router nat-router \
+    --nat-all-subnet-ip-ranges \
+    --auto-allocate-nat-external-ips
+```
+
+```
+gcloud container clusters get-credentials standard-cluster-1 --zone us-central1-a --project redapt-anthos-poc
+```
+
+
+---
+
+
+# Deprecated Instructions (Included for History)
+
+
 Google Provides a managed Kubernetes cluster service 'Kubernetes Engine', that you can utilize to deploy your workloads.
 
 In this section, we will walk through setting up an GKE cluster, which you can use to experiment in the coming sections and demonstrations.
@@ -123,7 +189,7 @@ gcloud compute routers nats create nat-config \
     --auto-allocate-nat-external-ips
 ```
 
-It may take up to 3 minutes for the NAT configuration to propagate, so wait at least a minute before trying to access the Internet again.
+It may take up to 3 minutes for the NAT configuration to propagate, so wait at least a minute before trying to access the Internet.
 
 
 ## Continuing
